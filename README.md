@@ -9,3 +9,6 @@ http://cstruter.com/blog/430
 
 PHP drop-down list - Part 3 (Maintaining State)
 http://cstruter.com/blog/431
+
+PHP drop-down list - Part 4 (Cleaning things up a bit)
+http://cstruter.com/blog/432
