@@ -11,21 +11,19 @@ use CSTruter\Serialization\Interfaces\IHtmlSerializer,
 
 class HtmlSerializer
 implements IHtmlSerializer
-{
-	private $serializer;
-	
+{	
 	public function Serialize(HtmlElement $element)
 	{
-		$this->serializer = $this->getSerializer($element);
-		$tagName = $this->serializer->GetTagName();
+		$serializer = $this->getSerializer($element);
+		$tagName = $serializer->GetTagName();
 		$html = "<$tagName";
-		$html.= $this->getAttributeHtml();
-		if ($this->isVoidElement()) {
+		$html.= $this->getAttributeHtml($serializer);
+		if ($this->isVoidElement($serializer)) {
 			$html.= ' >';
 		} else {
 			$html.= '>';
-			$html.= $this->getChildHtml();
-			$html.= $this->getChildText();
+			$html.= $this->getChildHtml($serializer);
+			$html.= $this->getChildText($serializer);
 			$html.= "</$tagName>";
 		}
 		return $html;
@@ -40,9 +38,9 @@ implements IHtmlSerializer
 		return null;
 	}
 	
-	private function getAttributeHtml() {
+	private function getAttributeHtml($serializer) {
 		$html = '';
-		$attributes = $this->serializer->GetAttributes();
+		$attributes = $serializer->GetAttributes();
 		foreach($attributes as $attribute => $value) {
 			if ($value === '') {
 				$html.=' '.strtolower($attribute);
@@ -53,10 +51,10 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function getChildHtml() {
+	private function getChildHtml($serializer) {
 		$html = '';
-		if ($this->serializer instanceof IHtmlInnerHtml) {
-			$children = $this->serializer->GetInnerHtml();
+		if ($serializer instanceof IHtmlInnerHtml) {
+			$children = $serializer->GetInnerHtml();
 			foreach($children as $child) {
 				if ($child instanceof HtmlElement) {
 					$html.=$child->Render($this);
@@ -66,16 +64,16 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function getChildText() {
+	private function getChildText($serializer) {
 		$html = '';
-		if ($this->serializer instanceof IHtmlInnerText) {
-			$html.= htmlentities($this->serializer->GetInnerText());
+		if ($serializer instanceof IHtmlInnerText) {
+			$html.= htmlentities($serializer->GetInnerText());
 		}
 		return $html;
 	}
 	
-	private function isVoidElement() {
-		return !($this->serializer instanceof IHtmlInnerText || $this->serializer instanceof IHtmlInnerHtml);
+	private function isVoidElement($serializer) {
+		return !($serializer instanceof IHtmlInnerText || $serializer instanceof IHtmlInnerHtml);
 	}
 }
 
