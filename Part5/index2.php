@@ -14,9 +14,9 @@ HtmlSettings::$Serializer = new HtmlSerializer();
 $select = new HtmlSelectElement('friends', [
 	new HtmlOptionElement('Not Selected', 0),
 	new HtmlOptionElement('Gerhardt Stander', 1),
-	new HtmlOptionElement('Bronwen Murdoch', 2),
-	new HtmlOptionElement('Maree Kleu', 3)
-],  "Maree Kleu", true);
+	new HtmlOptionElement('Bronwen Murdoch'),
+	new HtmlOptionElement('Maree Kleu')
+],  "Maree Kleu");
 
 ?>
 

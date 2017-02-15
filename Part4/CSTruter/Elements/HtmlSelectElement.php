@@ -21,7 +21,7 @@ implements IHtmlInnerHtml
 		$this->Name = $name;
 		$this->Disabled = $disabled;
 		$userValue = $this->GetUserValue($context);
-		$this->SetChildren($children, ($value == null) ? $value : $userValue);
+		$this->SetChildren($children, ($userValue === null) ? $value : $userValue);
 	}
 
 	private function setChild($child, $value) {
@@ -38,7 +38,7 @@ implements IHtmlInnerHtml
 	
 	public function SetValue($value) {
 		foreach($this->Children as $child) {
-			$this->setChild($child, value);
+			$this->setChild($child, $value);
 		}
 	}
 	

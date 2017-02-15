@@ -12,7 +12,7 @@ $select = new HtmlSelectElement('friends', [
 	new HtmlOptionElement('Gerhardt Stander', 1),
 	new HtmlOptionElement('Bronwen Murdoch', 2),
 	new HtmlOptionElement('Maree Kleu', 3)
-],  "Maree Kleu");
+],  3);
 
 ?>
 

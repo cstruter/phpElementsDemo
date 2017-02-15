@@ -18,7 +18,7 @@ class HtmlSelectElement extends HtmlFormControlElement
 		$this->Name = $name;
 		$this->Disabled = $disabled;
 		$userValue = $this->GetUserValue($requestMethod);
-		$this->SetChildren($children, ($value == null) ? $value : $userValue);
+		$this->SetChildren($children, ($userValue === null) ? $value : $userValue);
 	}
 
 	private function setChild($child, $value) {
@@ -35,7 +35,7 @@ class HtmlSelectElement extends HtmlFormControlElement
 	
 	public function SetValue($value) {
 		foreach($this->Children as $child) {
-			$this->setChild($child, value);
+			$this->setChild($child, $value);
 		}
 	}
 	

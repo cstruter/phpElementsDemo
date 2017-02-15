@@ -18,7 +18,7 @@ implements IHtmlInnerHtml
 		$this->Disabled = $disabled;
 		$this->Children = $children;
 		$value = $this->GetUserValue($context);
-		$this->SetSelected(($value == null) ? $selected : $value);
+		$this->SetSelected(($value === null) ? $selected : $value);
 	}
 	
 	public function SetSelected($value) {
