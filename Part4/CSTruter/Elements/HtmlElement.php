@@ -31,7 +31,7 @@ abstract class HtmlElement
 		$html = '';
 		$attributes = $this->GetAttributes();
 		foreach($attributes as $attribute => $value) {
-			if ($value != null) {
+			if ($value !== null) {
 				$html.=' '.strtolower($attribute).'="'.htmlspecialchars($value).'"';
 			}
 		}
