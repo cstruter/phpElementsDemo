@@ -1,6 +1,6 @@
 <?php
 
-namespace CSTruter\Serialization\Xhtml;
+namespace CSTruter\Serialization\Html;
 
 use CSTruter\Serialization\Interfaces\IHtmlSerializer,
 	CSTruter\Serialization\Interfaces\IHtmlInnerHtml,
@@ -9,7 +9,7 @@ use CSTruter\Serialization\Interfaces\IHtmlSerializer,
 	CSTruter\Elements\HtmlSelectElement,
 	CSTruter\Elements\HtmlOptionElement;
 
-class XHtmlSerializer
+class HtmlSerializer
 implements IHtmlSerializer
 {
 	private $serializer;
@@ -21,7 +21,7 @@ implements IHtmlSerializer
 		$html = "<$tagName";
 		$html.= $this->getAttributeHtml();
 		if ($this->isVoidElement()) {
-			$html.= ' />';
+			$html.= ' >';
 		} else {
 			$html.= '>';
 			$html.= $this->getChildHtml();
@@ -33,9 +33,9 @@ implements IHtmlSerializer
 	
 	private function getSerializer($element) {
 		if ($element instanceof HtmlSelectElement) {
-			return new XHtmlSelectSerializer($element);
+			return new HtmlSelectSerializer($element);
 		} else if ($element instanceof HtmlOptionElement) {
-			return new XHtmlOptionSerializer($element);
+			return new HtmlOptionSerializer($element);
 		}
 		return null;
 	}
@@ -44,7 +44,9 @@ implements IHtmlSerializer
 		$html = '';
 		$attributes = $this->serializer->GetAttributes();
 		foreach($attributes as $attribute => $value) {
-			if ($value !== null) {
+			if ($value === '') {
+				$html.=' '.strtolower($attribute);
+			} else if ($value !== null) {
 				$html.=' '.strtolower($attribute).'="'.htmlspecialchars($value).'"';
 			}
 		}

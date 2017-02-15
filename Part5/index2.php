@@ -5,7 +5,11 @@ function __autoload($class) {
 }
 
 use CSTruter\Elements\HtmlSelectElement,
-	CSTruter\Elements\HtmlOptionElement;
+	CSTruter\Elements\HtmlOptionElement,
+	CSTruter\Serialization\Html\HtmlSerializer,
+	CSTruter\Elements\HtmlSettings;
+
+HtmlSettings::$Serializer = new HtmlSerializer();
 	
 $select = new HtmlSelectElement('friends', [
 	new HtmlOptionElement('Not Selected', 0),
