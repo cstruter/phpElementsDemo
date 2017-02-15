@@ -40,7 +40,7 @@ implements IHtmlInnerText
 	}
 	
 	public function __toString() {
-        return (string)(($this->Value == null) ? $this->Text : $this->Value);
+        return (string)(($this->Value === null) ? $this->Text : $this->Value);
     }
 }
 
