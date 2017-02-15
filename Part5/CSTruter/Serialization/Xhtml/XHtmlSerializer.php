@@ -35,7 +35,7 @@ implements IHtmlSerializer
 		} else if ($element instanceof HtmlOptionElement) {
 			return new XHtmlOptionSerializer($element);
 		}
-		return null;
+		throw new \Exception('No metadata found for element '.get_class($element));
 	}
 	
 	private function getAttributeHtml($serializer) {
