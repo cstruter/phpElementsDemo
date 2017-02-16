@@ -28,7 +28,7 @@ $select = new HtmlSelectElement('friends', [
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>PHP Drop-Down List - Part 5</title>
+		<title>PHP Drop-Down List - Part 6</title>
 	</head>
 	<body>
 		<form method="POST">
