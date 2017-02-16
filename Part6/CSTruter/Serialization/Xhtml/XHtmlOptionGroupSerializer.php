@@ -4,13 +4,11 @@ namespace CSTruter\Serialization\Xhtml;
 
 use CSTruter\Serialization\Interfaces\IHtmlElement,
 	CSTruter\Serialization\Interfaces\IHtmlInnerHtml,
+	CSTruter\Serialization\Html\HtmlOptionGroupSerializer,
 	CSTruter\Elements\HtmlOptionGroupElement;
 
-class XHtmlOptionGroupSerializer 
-implements IHtmlElement, IHtmlInnerHtml
+class XHtmlOptionGroupSerializer extends HtmlOptionGroupSerializer
 {
-	private $element;
-	
 	public function __construct(HtmlOptionGroupElement $element) {
 		$this->element = $element;
 	}
@@ -20,14 +18,6 @@ implements IHtmlElement, IHtmlInnerHtml
 			'disabled' => ($this->element->Disabled) ? 'disabled' : null,
 			'label' => $this->element->Label
 		];
-	}
-
-	public function GetTagName() {
-		return 'optgroup';
-	}	
-	
-	public function GetInnerHtml() {
-		return $this->element->GetChildren();
 	}
 }
 

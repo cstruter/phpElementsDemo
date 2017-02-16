@@ -9,7 +9,7 @@ use CSTruter\Serialization\Interfaces\IHtmlElement,
 class HtmlOptionGroupSerializer 
 implements IHtmlElement, IHtmlInnerHtml
 {
-	private $element;
+	protected $element;
 	
 	public function __construct(HtmlOptionGroupElement $element) {
 		$this->element = $element;

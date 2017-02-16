@@ -30,7 +30,7 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function getSerializer($element) {
+	protected function getSerializer($element) {
 		if ($element instanceof HtmlSelectElement) {
 			return new HtmlSelectSerializer($element);
 		} else if ($element instanceof HtmlOptionElement) {
@@ -41,7 +41,7 @@ implements IHtmlSerializer
 		throw new \Exception('No metadata found for element '.get_class($element));
 	}
 	
-	private function getAttributeHtml($serializer) {
+	protected function getAttributeHtml($serializer) {
 		$html = '';
 		$attributes = $serializer->GetAttributes();
 		foreach($attributes as $attribute => $value) {
@@ -54,7 +54,7 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function getChildHtml($serializer) {
+	protected function getChildHtml($serializer) {
 		$html = '';
 		if ($serializer instanceof IHtmlInnerHtml) {
 			$children = $serializer->GetInnerHtml();
@@ -67,7 +67,7 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function getChildText($serializer) {
+	protected function getChildText($serializer) {
 		$html = '';
 		if ($serializer instanceof IHtmlInnerText) {
 			$html.= htmlentities($serializer->GetInnerText());
@@ -75,7 +75,7 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function isVoidElement($serializer) {
+	protected function isVoidElement($serializer) {
 		return !($serializer instanceof IHtmlInnerText || $serializer instanceof IHtmlInnerHtml);
 	}
 }

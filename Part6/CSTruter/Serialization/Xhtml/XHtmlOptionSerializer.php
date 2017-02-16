@@ -4,13 +4,11 @@ namespace CSTruter\Serialization\Xhtml;
 
 use CSTruter\Serialization\Interfaces\IHtmlElement,
 	CSTruter\Serialization\Interfaces\IHtmlInnerText,
+	CSTruter\Serialization\Html\HtmlOptionSerializer,
 	CSTruter\Elements\HtmlOptionElement;
 
-class XHtmlOptionSerializer 
-implements IHtmlElement, IHtmlInnerText
+class XHtmlOptionSerializer extends HtmlOptionSerializer
 {
-	private $element;
-	
 	public function __construct(HtmlOptionElement $element) {
 		$this->element = $element;
 	}
@@ -21,14 +19,6 @@ implements IHtmlElement, IHtmlInnerText
 			'selected' => ($this->element->Selected) ? 'selected' : null,
 			'value' => $this->element->Value
 		];
-	}
-
-	public function GetTagName() {
-		return 'option';
-	}	
-	
-	public function GetInnerText() {
-		return $this->element->Text;
 	}
 }
 

@@ -5,13 +5,13 @@ namespace CSTruter\Serialization\Xhtml;
 use CSTruter\Serialization\Interfaces\IHtmlSerializer,
 	CSTruter\Serialization\Interfaces\IHtmlInnerHtml,
 	CSTruter\Serialization\Interfaces\IHtmlInnerText,
+	CSTruter\Serialization\Html\HtmlSerializer,
 	CSTruter\Elements\HtmlElement,
 	CSTruter\Elements\HtmlSelectElement,
 	CSTruter\Elements\HtmlOptionElement,
 	CSTruter\Elements\HtmlOptionGroupElement;
 
-class XHtmlSerializer
-implements IHtmlSerializer
+class XHtmlSerializer extends HtmlSerializer
 {	
 	public function Serialize(HtmlElement $element)
 	{
@@ -30,7 +30,7 @@ implements IHtmlSerializer
 		return $html;
 	}
 	
-	private function getSerializer($element) {
+	protected function getSerializer($element) {
 		if ($element instanceof HtmlSelectElement) {
 			return new XHtmlSelectSerializer($element);
 		} else if ($element instanceof HtmlOptionElement) {
@@ -41,7 +41,7 @@ implements IHtmlSerializer
 		throw new \Exception('No metadata found for element '.get_class($element));
 	}
 	
-	private function getAttributeHtml($serializer) {
+	protected function getAttributeHtml($serializer) {
 		$html = '';
 		$attributes = $serializer->GetAttributes();
 		foreach($attributes as $attribute => $value) {
@@ -50,31 +50,6 @@ implements IHtmlSerializer
 			}
 		}
 		return $html;
-	}
-	
-	private function getChildHtml($serializer) {
-		$html = '';
-		if ($serializer instanceof IHtmlInnerHtml) {
-			$children = $serializer->GetInnerHtml();
-			foreach($children as $child) {
-				if ($child instanceof HtmlElement) {
-					$html.=$child->Render($this);
-				}
-			}
-		}
-		return $html;
-	}
-	
-	private function getChildText($serializer) {
-		$html = '';
-		if ($serializer instanceof IHtmlInnerText) {
-			$html.= htmlentities($serializer->GetInnerText());
-		}
-		return $html;
-	}
-	
-	private function isVoidElement($serializer) {
-		return !($serializer instanceof IHtmlInnerText || $serializer instanceof IHtmlInnerHtml);
 	}
 }
 

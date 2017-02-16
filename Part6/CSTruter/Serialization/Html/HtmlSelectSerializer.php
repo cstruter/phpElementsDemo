@@ -9,7 +9,7 @@ use CSTruter\Serialization\Interfaces\IHtmlElement,
 class HtmlSelectSerializer 
 implements IHtmlElement, IHtmlInnerHtml
 {
-	private $element;
+	protected $element;
 	
 	public function __construct(HtmlSelectElement $element) {
 		$this->element = $element;
