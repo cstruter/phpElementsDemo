@@ -12,3 +12,9 @@ http://cstruter.com/blog/431
 
 PHP drop-down list - Part 4 (Cleaning things up a bit)
 http://cstruter.com/blog/432
+
+PHP drop-down list - Part 5 (Custom Serialization)
+http://cstruter.com/blog/433
+
+PHP drop-down list - Part 6 (Adding Optgroups)
+http://cstruter.com/blog/434
