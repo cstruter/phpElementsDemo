@@ -5,7 +5,7 @@ namespace CSTruter\Elements;
 
 class HtmlOptionGroupElement extends HtmlElement
 {
-	public $Children;
+	private $Children;
 	public $Disabled;
 	public $Label;
 
